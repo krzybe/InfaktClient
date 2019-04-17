@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Infakt\Mapper;
 
 use Infakt\Model\Client;
+use Infakt\Model\EntityInterface;
 
-class ClientMapper implements MapperInterface
+class ClientMapper implements MapperInterface, ReverseMapperInterface
 {
     /**
      * {@inheritdoc}
@@ -38,5 +39,30 @@ class ClientMapper implements MapperInterface
             ->setPaymentMethod($data['payment_method'])
             ->setInvoiceNote($data['invoice_note'])
             ->setSameForwardAddress((bool) $data['same_forward_address']);
+    }
+
+    public function reverseMap(EntityInterface $entity): array {
+        /** @var Client $entity */
+        return
+            ['client' => [
+                'id' => $entity->getId(),
+                'company_name' => $entity->getCompanyName(),
+                'street' => $entity->getStreet(),
+                'city' => $entity->getCity(),
+                'country' => $entity->getCountry(),
+                'postal_code' => $entity->getPostalCode(),
+                'nip' => $entity->getNip(),
+                'phone_number' => $entity->getPhoneNumber(),
+                'web_site' => $entity->getWebsite(),
+                'email' => $entity->getEmail(),
+                'note' => $entity->getNote(),
+                'receiver' => $entity->getReceiver(),
+                'mailing_company_name' => $entity->getMailingCompanyName(),
+                'mailing_street' => $entity->getMailingStreet(),
+                'mailing_postal_code' => $entity->getMailingPostalCode(),
+                'days_to_payment' => $entity->getDaysToPayment(),
+                'payment_method' => $entity->getPaymentMethod(),
+                'invoice_note' => $entity->getInvoiceNote()
+        ]];
     }
 }

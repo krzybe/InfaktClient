@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Infakt\Repository;
 
 use Infakt\Model\Invoice;
+use Infakt\Model\EntityInterface;
+use Google\Protobuf\Field\Kind;
+use Infakt\Mapper\InvoiceMapper;
 
 class InvoiceRepository extends AbstractObjectRepository
 {
-    public function getNextNumber($kind = 'vat')
+    public function getNextNumber($kind = Kind::VAT)
     {
-        $kinds = ['final', 'advance', 'margin', 'proforma', 'vat'];
-
-        if (!in_array($kind, $kinds)) {
+        if (!in_array($kind, Kind::$kinds)) {
             throw new \LogicException('Invalid invoice kind "'.$kind.'"');
         }
 

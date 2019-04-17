@@ -95,15 +95,20 @@ class Infakt
      */
     public function post(string $query, ?string $body = null): ResponseInterface
     {
-        $options = [
-            'headers' => $this->getAuthorizationHeader(),
-        ];
+        return $this->request('post', $query, $body);
+    }
 
-        if ($body) {
-            $options['body'] = $body;
-        }
-
-        return $this->client->request('post', $this->buildQuery($query), $options);
+    /**
+     * Send HTTP PUT request.
+     *
+     * @param string      $query
+     * @param null|string $body
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function put(string $query, ?string $body = null): ResponseInterface
+    {
+        return $this->request('put', $query, $body);
     }
 
     /**
@@ -119,12 +124,37 @@ class Infakt
     }
 
     /**
+     * Send request
+     *
+     * @param string $method
+     * @param string $query
+     * @param string $body
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    protected function request(string $method, string $query, ?string $body): ResponseInterface
+    {
+        $options = [
+            'headers' => array_merge($this->getAuthorizationHeader(), [
+                "Content-Type" => "application/json",
+                "Content-Length" => \strlen($body)
+                ]),
+        ];
+
+        if ($body) {
+            $options['body'] = $body;
+        }
+
+        return $this->client->request($method, $this->buildQuery($query), $options);
+    }
+
+    /**
      * @return array
      */
     protected function getAuthorizationHeader(): array
     {
         return [
-            'X-inFakt-ApiKey' => $this->apiKey,
+            'X-inFakt-ApiKey' => $this->apiKey
         ];
     }
 }

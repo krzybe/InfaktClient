@@ -156,7 +156,7 @@ class Client implements EntityInterface
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -176,7 +176,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getCompanyName(): string
+    public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
@@ -196,7 +196,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getStreet(): string
+    public function getStreet(): ?string
     {
         return $this->street;
     }
@@ -216,7 +216,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -236,7 +236,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
@@ -256,7 +256,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getPostalCode(): string
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
@@ -276,7 +276,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getNip(): string
+    public function getNip(): ?string
     {
         return $this->nip;
     }
@@ -296,7 +296,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getPhoneNumber(): string
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
@@ -336,7 +336,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getWebsite(): string
+    public function getWebsite(): ?string
     {
         return $this->website;
     }
@@ -356,7 +356,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -376,7 +376,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getNote(): string
+    public function getNote(): ?string
     {
         return $this->note;
     }
@@ -396,7 +396,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getReceiver(): string
+    public function getReceiver(): ?string
     {
         return $this->receiver;
     }
@@ -416,7 +416,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getMailingCompanyName(): string
+    public function getMailingCompanyName(): ?string
     {
         return $this->mailingCompanyName;
     }
@@ -436,7 +436,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getMailingStreet(): string
+    public function getMailingStreet(): ?string
     {
         return $this->mailingStreet;
     }
@@ -456,7 +456,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getMailingCity(): string
+    public function getMailingCity(): ?string
     {
         return $this->mailingCity;
     }
@@ -476,7 +476,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getMailingPostalCode(): string
+    public function getMailingPostalCode(): ?string
     {
         return $this->mailingPostalCode;
     }
@@ -496,7 +496,7 @@ class Client implements EntityInterface
     /**
      * @return int
      */
-    public function getDaysToPayment(): int
+    public function getDaysToPayment(): ?int
     {
         return $this->daysToPayment;
     }
@@ -516,7 +516,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getInvoiceNote(): string
+    public function getInvoiceNote(): ?string
     {
         return $this->invoiceNote;
     }
@@ -536,7 +536,7 @@ class Client implements EntityInterface
     /**
      * @return string
      */
-    public function getPaymentMethod(): string
+    public function getPaymentMethod(): ?string
     {
         return $this->paymentMethod;
     }

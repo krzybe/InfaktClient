@@ -85,21 +85,66 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
         return $this->match($criteria);
     }
 
-    public function create(EntityInterface $entity)
+    /**
+     *
+     * {@inheritDoc}
+     * @see \Infakt\Repository\ObjectRepositoryInterface::create()
+     */
+    public function create(EntityInterface $entity): EntityInterface
     {
-        // To implement
+        $mapperClass = $this->getMapperClass();
+        /** @var MapperInterface $mapper */
+        $mapper = new $mapperClass;
+        $data = $mapper->reverseMap($entity);
+
+        if (null === $entity->getId()) { // new entity
+            $response = $this->infakt->post($this->getServiceName() . '.json', \GuzzleHttp\json_encode($data));
+        } else { // existing one
+            $response = $this->infakt->put($this->getServiceName() . '/' . $entity->getId() . '.json', \GuzzleHttp\json_encode($data));
+        }
+
+        if (! in_array($response->getStatusCode(), [200, 201, 202, 204])) {
+            throw new ApiException($response->getBody()->getContents());
+        }
+
+        return $mapper->map(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
+    }
+
+    /**
+     *
+     * @param EntityInterface $entity
+     *
+     * @return EntityInterface
+     */
+    public function update(EntityInterface $entity): EntityInterface
+    {
+        // no need to copy logic
+        return $this->create($entity);
+    }
+
+    /**
+     *
+     * @param EntityInterface $entity
+     */
+    public function save(EntityInterface $entity): EntityInterface
+    {
+        if (null === $entity->getId()) {
+            return $this->create($entity);
+        }
+
+        return $this->update($entity);
     }
 
     /**
      * Delete an entity.
      *
-     * @param EntityInterface $entity
+     * @param int $entityId
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function delete(EntityInterface $entity)
+    public function delete(int $entityId)
     {
-        return $this->infakt->delete($this->getServiceName().'/'.$entity->getId().'.json');
+        return $this->infakt->delete($this->getServiceName() . '/' . $entityId . '.json');
     }
 
     public function buildQuery(Criteria $criteria)

@@ -177,7 +177,7 @@ class Invoice implements EntityInterface
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -197,7 +197,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getNumber(): string
+    public function getNumber(): ?string
     {
         return $this->number;
     }
@@ -217,7 +217,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getCurrency(): string
+    public function getCurrency(): ?string
     {
         return $this->currency;
     }
@@ -237,7 +237,7 @@ class Invoice implements EntityInterface
     /**
      * @return float
      */
-    public function getPaidPrice(): float
+    public function getPaidPrice(): ?float
     {
         return $this->paidPrice;
     }
@@ -257,7 +257,7 @@ class Invoice implements EntityInterface
     /**
      * @return \DateTime
      */
-    public function getPaidDate(): \DateTime
+    public function getPaidDate(): ?\DateTime
     {
         return $this->paidDate;
     }
@@ -277,7 +277,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getNotes(): string
+    public function getNotes(): ?string
     {
         return $this->notes;
     }
@@ -297,7 +297,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getKind(): string
+    public function getKind(): ?string
     {
         return $this->kind;
     }
@@ -417,7 +417,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -437,7 +437,7 @@ class Invoice implements EntityInterface
     /**
      * @return \DateTime
      */
-    public function getPaymentDate(): \DateTime
+    public function getPaymentDate(): ?\DateTime
     {
         return $this->paymentDate;
     }
@@ -457,7 +457,7 @@ class Invoice implements EntityInterface
     /**
      * @return float
      */
-    public function getNetPrice(): float
+    public function getNetPrice(): ?float
     {
         return $this->netPrice;
     }
@@ -477,7 +477,7 @@ class Invoice implements EntityInterface
     /**
      * @return float
      */
-    public function getTaxPrice(): float
+    public function getTaxPrice(): ?float
     {
         return $this->taxPrice;
     }
@@ -497,7 +497,7 @@ class Invoice implements EntityInterface
     /**
      * @return float
      */
-    public function getGrossPrice(): float
+    public function getGrossPrice(): ?float
     {
         return $this->grossPrice;
     }
@@ -517,7 +517,7 @@ class Invoice implements EntityInterface
     /**
      * @return int
      */
-    public function getClientId(): int
+    public function getClientId(): ?int
     {
         return $this->clientId;
     }
@@ -537,7 +537,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getClientCompanyName(): string
+    public function getClientCompanyName(): ?string
     {
         return $this->clientCompanyName;
     }
@@ -557,7 +557,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getClientStreet(): string
+    public function getClientStreet(): ?string
     {
         return $this->clientStreet;
     }
@@ -577,7 +577,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getClientCity(): string
+    public function getClientCity(): ?string
     {
         return $this->clientCity;
     }
@@ -597,7 +597,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getClientPostCode(): string
+    public function getClientPostCode(): ?string
     {
         return $this->clientPostCode;
     }
@@ -617,7 +617,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getClientTaxCode(): string
+    public function getClientTaxCode(): ?string
     {
         return $this->clientTaxCode;
     }
@@ -637,7 +637,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getClientCountry(): string
+    public function getClientCountry(): ?string
     {
         return $this->clientCountry;
     }
@@ -657,7 +657,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getBankName(): string
+    public function getBankName(): ?string
     {
         return $this->bankName;
     }
@@ -677,7 +677,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getBankAccount(): string
+    public function getBankAccount(): ?string
     {
         return $this->bankAccount;
     }
@@ -697,7 +697,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getSwift(): string
+    public function getSwift(): ?string
     {
         return $this->swift;
     }
@@ -737,7 +737,7 @@ class Invoice implements EntityInterface
     /**
      * @return string
      */
-    public function getInvoiceDateKind(): string
+    public function getInvoiceDateKind(): ?string
     {
         return $this->invoiceDateKind;
     }
@@ -777,7 +777,7 @@ class Invoice implements EntityInterface
     /**
      * @return int
      */
-    public function getVatExemptionReason(): int
+    public function getVatExemptionReason(): ?int
     {
         return $this->vatExemptionReason;
     }
@@ -797,7 +797,7 @@ class Invoice implements EntityInterface
     /**
      * @return Extension
      */
-    public function getExtensions(): Extension
+    public function getExtensions(): ?Extension
     {
         return $this->extensions;
     }
@@ -812,5 +812,24 @@ class Invoice implements EntityInterface
         $this->extensions = $extensions;
 
         return $this;
+    }
+
+    /**
+     * Create Client based on invoice data
+     *
+     * @return Client
+     */
+    public function createClient(): Client
+    {
+        $client = new Client();
+        $client
+            ->setCompanyName($this->getClientCompanyName())
+            ->setStreet($this->getClientStreet())
+            ->setCity($this->getClientCity())
+            ->setPostalCode($this->getClientPostCode())
+            ->setNip($this->getClientTaxCode())
+            ->setCountry($this->getClientCountry());
+
+        return $client;
     }
 }

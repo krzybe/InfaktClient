@@ -15,15 +15,7 @@ trait ReverseMapperTrait
      */
     public function reverseMapPrice(?float $price): ?int
     {
-        if (null === $price) {
-            return null;
-        }
-
-        if (0.00 === $price) {
-            return 0;
-        }
-
-        return (int) str_replace('.', '', number_format($price, 2, '.', ''));
+        return (int) $price;
     }
 
     /**

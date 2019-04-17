@@ -76,7 +76,7 @@ class Service implements EntityInterface
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -136,7 +136,7 @@ class Service implements EntityInterface
     /**
      * @return string
      */
-    public function getUnit(): string
+    public function getUnit(): ?string
     {
         return $this->unit;
     }
@@ -146,7 +146,7 @@ class Service implements EntityInterface
      *
      * @return Service
      */
-    public function setUnit(string $unit): self
+    public function setUnit(?string $unit): self
     {
         $this->unit = $unit;
 
@@ -196,7 +196,7 @@ class Service implements EntityInterface
     /**
      * @return float
      */
-    public function getUnitNetPriceBeforeDiscount(): float
+    public function getUnitNetPriceBeforeDiscount(): ?float
     {
         return $this->unitNetPriceBeforeDiscount;
     }
@@ -206,7 +206,7 @@ class Service implements EntityInterface
      *
      * @return Service
      */
-    public function setUnitNetPriceBeforeDiscount(float $unitNetPriceBeforeDiscount): self
+    public function setUnitNetPriceBeforeDiscount(?float $unitNetPriceBeforeDiscount): self
     {
         $this->unitNetPriceBeforeDiscount = $unitNetPriceBeforeDiscount;
 
@@ -236,7 +236,7 @@ class Service implements EntityInterface
     /**
      * @return float
      */
-    public function getGrossPrice(): float
+    public function getGrossPrice(): ?float
     {
         return $this->grossPrice;
     }
@@ -246,7 +246,7 @@ class Service implements EntityInterface
      *
      * @return Service
      */
-    public function setGrossPrice(float $grossPrice): self
+    public function setGrossPrice(?float $grossPrice): self
     {
         $this->grossPrice = $grossPrice;
 
@@ -296,7 +296,7 @@ class Service implements EntityInterface
     /**
      * @return float
      */
-    public function getDiscount(): float
+    public function getDiscount(): ?float
     {
         return $this->discount;
     }
@@ -306,7 +306,7 @@ class Service implements EntityInterface
      *
      * @return Service
      */
-    public function setDiscount(float $discount): self
+    public function setDiscount(?float $discount): self
     {
         $this->discount = $discount;
 
