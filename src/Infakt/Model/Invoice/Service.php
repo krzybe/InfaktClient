@@ -96,7 +96,7 @@ class Service implements EntityInterface
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -116,7 +116,7 @@ class Service implements EntityInterface
     /**
      * @return string
      */
-    public function getTaxSymbol(): string
+    public function getTaxSymbol(): ?string
     {
         return $this->taxSymbol;
     }
