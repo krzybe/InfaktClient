@@ -815,6 +815,23 @@ class Invoice implements EntityInterface
     }
 
     /**
+     *
+     * @return boolean
+     */
+    public function isOverdue(int $days = null) {
+        if (null === $this->getPaymentDate()) {
+            return false;
+        }
+
+        $paymentDate = $this->getPaymentDate();
+        if (null !== $days) {
+            $paymentDate->add(new \DateInterval('P' . $days . 'D'));
+        }
+
+        return $paymentDate < new \DateTime();
+    }
+
+    /**
      * Create Client based on invoice data
      *
      * @return Client
