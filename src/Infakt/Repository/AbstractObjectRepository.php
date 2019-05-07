@@ -96,6 +96,11 @@ abstract class AbstractObjectRepository implements ObjectRepositoryInterface
         /** @var MapperInterface $mapper */
         $mapper = new $mapperClass;
         $data = $mapper->reverseMap($entity);
+        foreach ($data as $key => $value) {
+            if (null === $value) {
+                unset($data[$key]);
+            }
+        }
 
         if (null === $entity->getId()) { // new entity
             $response = $this->infakt->post($this->getServiceName() . '.json', \GuzzleHttp\json_encode($data));

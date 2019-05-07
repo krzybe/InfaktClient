@@ -6,6 +6,7 @@ namespace Infakt\Model;
 
 use Infakt\Model\Invoice\Extension;
 use Infakt\Model\Invoice\Service;
+use Infakt\Model\Invoice\Status;
 
 /**
  * This entity represents an invoice.
@@ -848,5 +849,15 @@ class Invoice implements EntityInterface
             ->setCountry($this->getClientCountry());
 
         return $client;
+    }
+
+    /**
+     * Is in draft
+     *
+     * @return bool
+     */
+    public function isDraft(): bool
+    {
+        return Status::DRAFT === $this->getStatus();
     }
 }

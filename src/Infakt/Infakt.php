@@ -137,8 +137,8 @@ class Infakt
         $options = [
             'headers' => array_merge($this->getAuthorizationHeader(), [
                 "Content-Type" => "application/json",
-                "Content-Length" => \strlen($body)
-                ]),
+                "Content-Length" => \strlen($body ?? '')
+            ]),
         ];
 
         if ($body) {
