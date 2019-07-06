@@ -20,7 +20,7 @@ class BankAccountRepository extends AbstractObjectRepository
     /**
      * {@inheritdoc}
      */
-    public function create(EntityInterface $entity)
+    public function create(EntityInterface $entity): EntityInterface
     {
         throw new LogicException('This repository does not implement entity creation.');
     }
